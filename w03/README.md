@@ -65,13 +65,17 @@ timeout＝被擋住
 refused＝有門但沒人
 
 ## 網路拓樸圖
-（嵌入或連結 network-diagram）
+![network-diagram](network-diagram.png)
 
 ## 排錯紀錄
-- 症狀：
-- 診斷：（你首先查了什麼？）
-- 修正：（做了什麼改動？）
-- 驗證：（如何確認修正有效？）
+- 症狀：一開始 ping app 出現 Destination Host Unreachable，無法連線
+- 診斷：先用 ip address 檢查各 VM 的 IP，發現雖然同網段，但實際沒有連通，判斷是網卡設定問題
+- 修正：重新調整 VMware 網路，將三台 VM 的 Host-only 都設成同一個網段（VMnet1），並重新啟動 VM
+- 驗證：重新用 ping 測試成功，再用 ssh 可以正常連線，確認問題已解決
 
 ## 設計決策
-（說明本週至少 1 個技術選擇與取捨，例如：為什麼 db 允許 bastion 直連而不是只允許從 app 跳？）
+本次設計採用「跳板機（bastion）」作為唯一對外入口，app 和 db 都不直接對外開放，這樣可以降低被攻擊的風險。
+
+db 允許 bastion 直接連線，而不是只允許 app，主要是考慮到管理方便。如果 app 出問題時，仍然可以從 bastion 直接進入 db 進行維護與排錯，不會完全失去控制。
+
+整體是在「安全性」和「維護便利性」之間做平衡，避免系統太封閉導致無法操作。
