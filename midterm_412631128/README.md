@@ -47,16 +47,14 @@ ping -c 2 192.168.56.133
 
 
 ProxyJump 成功證據
-<img width="1346" height="760" alt="image" src="https://github.com/user-attachments/assets/923beb3f-2ef0-4edb-87d8-ee39710d629f" />
->
+![ssh-proxyjump](screenshots/ssh-proxyjump.png)
 
 
 ## 4. Part C：Docker 服務
 <Docker 運行狀態
-<img width="815" height="653" alt="螢幕擷取畫面 2026-04-23 165919" src="https://github.com/user-attachments/assets/a629ff31-d26f-492a-b633-8040e897babb" />
-nginx 服務測試（HTTP 200）<img width="808" height="309" alt="image" src="https://github.com/user-attachments/assets/e2719613-483a-4832-be2d-9358f9248d72" />
-
->
+![docker-running](screenshots/docker-running.png)
+nginx 服務測試（HTTP 200）
+![curl-running](screenshots/curl-running.png)
 
 
 ## 5. Part D：故障演練
@@ -66,12 +64,12 @@ sudo ufw delete 1
 sudo ufw delete 1
 sudo ufw default deny incoming
 sudo ufw status
-- 故障前：<img width="800" height="154" alt="image" src="https://github.com/user-attachments/assets/2658f09f-ee7d-44c2-b3ca-0345e545bbb9" /><img width="1441" height="427" alt="image" src="https://github.com/user-attachments/assets/cbee28da-b1df-4e67-8d8f-46ae9e97ecb8" />
+- 故障前：![fault-A-before](screenshots/fault-A-before.png)
 
 
-- 故障中：<img width="689" height="69" alt="image" src="https://github.com/user-attachments/assets/2d4d4507-d816-498d-af46-e6359d1714c2" />
+- 故障中：![fault-A-during](screenshots/fault-A-during.png)
 
-- 回復後：<img width="972" height="154" alt="image" src="https://github.com/user-attachments/assets/e3c88795-bee3-4be6-8bb5-5929b7268642" />
+- 回復後：![fault-A-after](screenshots/fault-A-after.png)
 
 - 診斷推論：在故障中，Host 端出現 ssh connection timed out。此現象代表 TCP 封包沒有收到回應（被丟棄），而非被主機立即拒絕。
 
@@ -85,10 +83,10 @@ sudo ufw status
 ### 故障 2：<F3（停止 Docker daemon）>
 注入方式：sudo systemctl stop docker
 sudo systemctl stop docker.socket
-- 故障前<img width="808" height="410" alt="image" src="https://github.com/user-attachments/assets/8f8fb389-7e09-4a5a-975b-8f603d635158" />
-- 故障中：<img width="807" height="76" alt="螢幕擷取畫面 2026-04-23 181106" src="https://github.com/user-attachments/assets/1bff6498-638c-43e7-8cde-b4413e606e78" />
+- 故障前：![fault-B-before](screenshots/fault-B-before.png)
+- 故障中：![fault-B-during](screenshots/fault-B-during.png)
 - 回復後：
-<img width="829" height="280" alt="image" src="https://github.com/user-attachments/assets/d87ef3d4-20f5-4270-a7e3-35b7a2088553" />
+![fault-B-after](screenshots/fault-B-after.png)
 
 ### 症狀辨識（我選F2+F3）
 F2 發生時，連 SSH 都無法連線，表示問題在網路或防火牆層（封包被阻擋）。
