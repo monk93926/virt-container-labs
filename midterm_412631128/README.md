@@ -1,7 +1,16 @@
 # 期中實作 — <412631128> <陳冠宏>
 
 ## 1. 架構與 IP 表
-<img width="529" height="681" alt="mermaid-diagram (1)" src="https://github.com/user-attachments/assets/8c8a1fa8-13c8-4f69-bf7b-9ee6237f3470" />
+```mermaid
+graph TD
+    Internet((Internet))
+    
+    bastion["bastion<br/>NAT: 192.168.146.131<br/>Host-only: 192.168.56.133"]
+    app["app<br/>Host-only: 192.168.56.131"]
+
+    Internet --> bastion
+    bastion --> app
+```
 
 
 | VM      | Interface | Type      | IP Address      |
