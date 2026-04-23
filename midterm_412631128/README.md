@@ -23,26 +23,50 @@ graph TD
 
 ## 2. Part A：VM 與網路
 **命令：**
+```bash
 ip -4 addr show
+```
+
 
 ##關鍵輸出：
+```bash
 inet 192.168.146.131/24   # NAT
 inet 192.168.56.133/24    # Host-only
+```
+
 
 ##app命令：
+```bash
 ip -4 addr show
+```
+
 ##關鍵輸出：
+```bash
 inet 192.168.56.131/24
+```
+
 
 ##連線測試bastion → app命令：
+```bash
 ping -c 2 192.168.56.131
+```
+
 ##輸出：
+```bash
 2 packets transmitted, 2 received, 0% packet loss
+```
+
 
 ##app → bastion命令：
+```bash
 ping -c 2 192.168.56.133
+```
+
 ##輸出：
+```bash
 2 packets transmitted, 2 received, 0% packet loss
+```
+
 
 ## 3. Part B：金鑰、ufw、ProxyJump
 ### 防火牆規則表
