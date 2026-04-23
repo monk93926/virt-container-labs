@@ -13,10 +13,28 @@
 <
 
 ## 2. Part A：VM 與網路
-basion to app<img width="809" height="280" alt="image" src="https://github.com/user-attachments/assets/198e9896-c095-4ca6-ae71-7d43deb7b7dd" />
->
-app to bastion<img width="815" height="274" alt="image" src="https://github.com/user-attachments/assets/9a42e5c9-84c3-4e06-a253-e25f24125b3e" />
-Both bastion and app can successfully ping each other via the Host-only network (192.168.56.0/24), indicating Layer 2 and Layer 3 connectivity is functioning correctly.
+**命令：**
+ip -4 addr show
+
+##關鍵輸出：
+inet 192.168.146.131/24   # NAT
+inet 192.168.56.133/24    # Host-only
+
+##app命令：
+ip -4 addr show
+##關鍵輸出：
+inet 192.168.56.131/24
+
+##連線測試bastion → app命令：
+ping -c 2 192.168.56.131
+##輸出：
+2 packets transmitted, 2 received, 0% packet loss
+
+##app → bastion命令：
+ping -c 2 192.168.56.133
+##輸出：
+2 packets transmitted, 2 received, 0% packet loss
+
 ## 3. Part B：金鑰、ufw、ProxyJump
 ### 防火牆規則表
 
@@ -26,6 +44,8 @@ Both bastion and app can successfully ping each other via the Host-only network 
 | bastion  | allow 22/tcp |
 | app      | default deny incoming |
 | app      | allow from 192.168.56.133 to any port 22 proto tcp |
+
+
 ProxyJump 成功證據
 <img width="1346" height="760" alt="image" src="https://github.com/user-attachments/assets/923beb3f-2ef0-4edb-87d8-ee39710d629f" />
 >
