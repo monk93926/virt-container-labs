@@ -90,6 +90,7 @@ named volume 不會隨 container 消失，它獨立存在於 Docker 主機上，
 <img width="643" height="131" alt="螢幕擷取畫面 2026-06-16 022419" src="https://github.com/user-attachments/assets/45d5f7ee-ba0e-419b-9a9f-2d461ceda4c9" />
 
 <img width="643" height="134" alt="螢幕擷取畫面 2026-06-16 023126" src="https://github.com/user-attachments/assets/f3e64e4f-d4de-45fb-8abf-6b19acc38203" />
+
 ### yaml 的值怎麼對回 cgroup 檔案？
 
 在 compose.yaml 中設定的資源限制會透過 Linux cgroup 套用到容器。
