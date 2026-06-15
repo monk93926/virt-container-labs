@@ -28,7 +28,9 @@ Snapshot
 
 ## 3. Part B：Dockerfile 與快取
 <Dockerfile + 兩次 build 對照>
+
 第一次 build
+
 <img width="679" height="593" alt="螢幕擷取畫面 2026-06-16 033146" src="https://github.com/user-attachments/assets/0204a95a-a4b6-4839-883d-b9345a0218f5" />
 
 第二次 build
